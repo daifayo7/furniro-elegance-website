@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAISON ÉLISE | Luxury French Furniture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-cream: #FAF8F5;
+            --color-ivory: #F5F1EB;
+            --color-gold: #C9A86C;
+            --color-gold-light: #D4B87A;
+            --color-gold-dark: #A88B4A;
+            --color-charcoal: #2C2C2C;
+            --color-dark: #1A1A1A;
+            --color-rose: #E8DDD4;
+            --color-blush: #F0E6E0;
+            --color-text: #3D3D3D;
+            --color-text-light: #6B6B6B;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-cream);
+            color: var(--color-text);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--color-gold);
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 24px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav.scrolled {
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 16px 60px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+        }
+
+        .nav-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .nav-logo-en {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            color: var(--color-charcoal);
+        }
+
+        .nav-logo-cn {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--color-gold);
+            margin-top: 2px;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-charcoal);
+            text-decoration: none;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--color-gold);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 14px 32px;
+            background: var(--color-charcoal);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--color-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 800px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(26,26,26,0.6) 0%, rgba(26,26,26,0.2) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+        }
+
+        .hero-tag {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--color-gold-light);
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            font-weight: 300;
+            line-height: 1.15;
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 0.5s forwards;
+        }
+
+        .hero-title span {
+            font-style: italic;
+            color: var(--color-gold-light);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 2;
+            max-width: 520px;
+            margin-bottom: 48px;
+            opacity: 0.9;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 0.7s forwards;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: white;
+            text-decoration: none;
+            padding: 20px 48px;
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 0.9s forwards;
+        }
+
+        .hero-cta:hover {
+            background: white;
+            color: var(--color-charcoal);
+            border-color: white;
+        }
+
+        .hero-cta svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(6px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            opacity: 0;
+            animation: fadeUp 1s 1.2s forwards;
+        }
+
+        .hero-scroll span {
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scrollLine {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.5); opacity: 0.5; }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 140px 0;
+        }
+
+        .section-tag {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 24px;
+            color: var(--color-charcoal);
+        }
+
+        .section-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 300;
+            text-align: center;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto 80px;
+            line-height: 2;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            background: var(--color-ivory);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .philosophy-image {
+            position: relative;
+            height: 600px;
+        }
+
+        .philosophy-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .philosophy-image::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: 30px;
+            bottom: 30px;
+            border: 1px solid var(--color-gold);
+            z-index: -1;
+        }
+
+        .philosophy-content {
+            padding: 40px 0;
+        }
+
+        .philosophy-tag {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 24px;
+        }
+
+        .philosophy-title {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 300;
+            line-height: 1.3;
+            margin-bottom: 40px;
+            color: var(--color-charcoal);
+        }
+
+        .philosophy-text {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 2.2;
+            color: var(--color-text-light);
+            margin-bottom: 20px;
+        }
+
+        .philosophy-signature {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--color-gold);
+            margin-top: 40px;
+        }
+
+        /* Collections Section */
+        .collections {
+            background: var(--color-cream);
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .collection-card {
+            position: relative;
+            height: 520px;
+            overflow: hidden;
+            cursor: pointer;
+            group: true;
+        }
+
+        .collection-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .collection-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .collection-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 40px 40px;
+            background: linear-gradient(to top, rgba(26,26,26,0.85) 0%, transparent 100%);
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .collection-card:hover .collection-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .collection-name {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .collection-name-en {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-gold-light);
+            margin-bottom: 16px;
+        }
+
+        .collection-desc {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 300;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .collection-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: white;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+
+        .collection-link:hover {
+            gap: 18px;
+        }
+
+        /* Featured Products */
+        .featured {
+            background: var(--color-blush);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+        }
+
+        .product-image {
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            background: var(--color-gold);
+            color: white;
+        }
+
+        .product-info {
+            padding: 28px;
+        }
+
+        .product-category {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 12px;
+        }
+
+        .product-name {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--color-charcoal);
+            margin-bottom: 8px;
+        }
+
+        .product-name-en {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            color: var(--color-text-light);
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--color-charcoal);
+        }
+
+        .product-price span {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            margin-left: 4px;
+        }
+
+        /* Craftsmanship Section */
+        .craftsmanship {
+            background: var(--color-charcoal);
+            color: white;
+            position: relative;
+        }
+
+        .craftsmanship-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .craftsmanship-text {
+            padding-right: 40px;
+        }
+
+        .craftsmanship-tag {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 24px;
+        }
+
+        .craftsmanship-title {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 300;
+            line-height: 1.3;
+            margin-bottom: 40px;
+        }
+
+        .craftsmanship-desc {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 2.2;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+        }
+
+        .craftsmanship-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            border-left: 1px solid var(--color-gold);
+            padding-left: 24px;
+        }
+
+        .feature-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--color-gold);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .feature-label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .craftsmanship-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+            height: 550px;
+        }
+
+        .craft-image {
+            overflow: hidden;
+        }
+
+        .craft-image:first-child {
+            grid-row: span 2;
+        }
+
+        .craft-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .craft-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Testimonial */
+        .testimonial {
+            background: var(--color-cream);
+            text-align: center;
+        }
+
+        .testimonial-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .testimonial-quote {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.8;
+            color: var(--color-charcoal);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            font-family: var(--font-display);
+            font-size: 8rem;
+            color: var(--color-gold);
+            opacity: 0.2;
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            line-height: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 2px solid var(--color-gold);
+        }
+
+        .testimonial-name {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--color-charcoal);
+            margin-bottom: 4px;
+        }
+
+        .testimonial-title {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--color-ivory) 0%, var(--color-cream) 100%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+        }
+
+        .contact-info {
+            padding-right: 60px;
+        }
+
+        .contact-tag {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 24px;
+        }
+
+        .contact-title {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 300;
+            line-height: 1.3;
+            margin-bottom: 32px;
+            color: var(--color-charcoal);
+        }
+
+        .contact-desc {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--color-text-light);
+            margin-bottom: 40px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-gold);
+            flex-shrink: 0;
+        }
+
+        .contact-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--color-gold);
+        }
+
+        .contact-label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            margin-bottom: 4px;
+        }
+
+        .contact-value {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--color-charcoal);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 16px 0;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--color-charcoal);
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: var(--color-gold);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 20px 40px;
+            background: var(--color-charcoal);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .form-submit:hover {
+            background: var(--color-gold);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-dark);
+            color: white;
+            padding: 100px 0 40px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            padding-bottom: 80px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-brand {
+            max-width: 320px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 8px;
+        }
+
+        .footer-logo-cn {
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            color: var(--color-gold);
+            letter-spacing: 0.15em;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .footer-desc {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            line-height: 1.9;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .footer-title {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 28px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-links a {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        .footer-copyright {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--color-gold);
+            background: var(--color-gold);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+            fill: white;
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 40px;
+            }
+
+            .hero-title {
+                font-size: 4rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+
+            .philosophy-grid,
+            .craftsmanship-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .philosophy-image {
+                height: 400px;
+            }
+
+            .collections-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .collection-card {
+                height: 400px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+
+            .nav {
+                padding: 16px 24px;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .section-title {
+                font-size: 2.4rem;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .craftsmanship-features {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-logo">
+            <span class="nav-logo-en">MAISON ÉLISE</span>
+            <span class="nav-logo-cn">Élise Mansion</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#philosophy">Philosophy</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#featured">Featured</a></li>
+            <li><a href="#craftsmanship">Craftsmanship</a></li>
+            <li><a href="#contact">Visit Us</a></li>
+        </ul>
+        <button class="nav-cta">Book Visit</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=80" alt="Luxury Interior">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-tag">French Art de Vivre</p>
+                <h1 class="hero-title">Where Home Becomes<br><span>Art</span></h1>
+                <p class="hero-subtitle">Born in Paris, crafted with passion. We bring French elegance to every piece, creating living spaces that inspire.</p>
+                <a href="#collections" class="hero-cta">
+                    Explore Collections
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll to Explore</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy" id="philosophy">
+        <div class="container">
+            <div class="philosophy-grid">
+                <div class="philosophy-image reveal">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80" alt="Elegant Interior">
+                </div>
+                <div class="philosophy-content reveal">
+                    <p class="philosophy-tag">Our Philosophy</p>
+                    <h2 class="philosophy-title">Centuries of Craft<br>Timeless Elegance</h2>
+                    <p class="philosophy-text">
+                        MAISON ÉLISE was born from an unwavering pursuit of beautiful living. We believe a home is more than a dwelling—it is a sanctuary for the soul. Every piece we create carries the heart of our artisans and their dedication to beauty.
+                    </p>
+                    <p class="philosophy-text">
+                        We source the finest materials from France and Italy, blending traditional craftsmanship with contemporary design. From concept to creation, every detail is meticulously refined—because elegance should be everyday.
+                    </p>
+                    <p class="philosophy-signature">— Élise Marchand, Founder</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section class="collections" id="collections">
+        <div class="container">
+            <p class="section-tag">Our Collections</p>
+            <h2 class="section-title">Curated Living Spaces</h2>
+            <p class="section-subtitle">Three essential spaces—living room, bedroom, and study—reimagined through the lens of French sophistication</p>
+            
+            <div class="collections-grid">
+                <div class="collection-card reveal">
+                    <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800&q=80" alt="Living Room">
+                    <div class="collection-overlay">
+                        <p class="collection-name-en">Salon</p>
+                        <h3 class="collection-name">Living Room</h3>
+                        <p class="collection-desc">Graceful sofas and refined coffee tables that define French sophistication in your entertaining space.</p>
+                        <a href="#" class="collection-link">
+                            Explore
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="collection-card reveal">
+                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80" alt="Bedroom">
+                    <div class="collection-overlay">
+                        <p class="collection-name-en">Chambre</p>
+                        <h3 class="collection-name">Bedroom</h3>
+                        <p class="collection-desc">Serene beds and elegant vanities that create an intimate sanctuary of romance and comfort.</p>
+                        <a href="#" class="collection-link">
+                            Explore
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="collection-card reveal">
+                    <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800&q=80" alt="Study">
+                    <div class="collection-overlay">
+                        <p class="collection-name-en">Bureau</p>
+                        <h3 class="collection-name">Study</h3>
+                        <p class="collection-desc">Quiet desks and warm bookshelves designed for contemplation and creative pursuit.</p>
+                        <a href="#" class="collection-link">
+                            Explore
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured" id="featured">
+        <div class="container">
+            <p class="section-tag">Featured Pieces</p>
+            <h2 class="section-title">Masterfully Crafted</h2>
+            <p class="section-subtitle">Each piece is a harmonious blend of art and function</p>
+            
+            <div class="products-grid">
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80" alt="Margaux Sofa">
+                        <span class="product-badge">New</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Living Room</p>
+                        <h4 class="product-name">Margaux Sofa</h4>
+                        <p class="product-name-en">Three-seater with gold accents</p>
+                        <p class="product-price">$9,200<span> from</span></p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80" alt="Aurora Bed">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Bedroom</p>
+                        <h4 class="product-name">Aurora Bed</h4>
+                        <p class="product-name-en">King-size with upholstered headboard</p>
+                        <p class="product-price">$7,000<span> from</span></p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600&q=80" alt="Lumiere Desk">
+                        <span class="product-badge">Limited</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Study</p>
+                        <h4 class="product-name">Lumière Desk</h4>
+                        <p class="product-name-en">Walnut with brass details</p>
+                        <p class="product-price">$4,800<span> from</span></p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80" alt="Belle Vanity">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Bedroom</p>
+                        <h4 class="product-name">Belle Vanity</h4>
+                        <p class="product-name-en">Oak with marble top</p>
+                        <p class="product-price">$3,200<span> from</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Craftsmanship Section -->
+    <section class="craftsmanship" id="craftsmanship">
+        <div class="container">
+            <div class="craftsmanship-content">
+                <div class="craftsmanship-text reveal">
+                    <p class="craftsmanship-tag">Our Craft</p>
+                    <h2 class="craftsmanship-title">A Legacy of<br>Master Artisans</h2>
+                    <p class="craftsmanship-desc">
+                        We partner with century-old ateliers in France and Italy. Each piece undergoes dozens of meticulous steps, shaped by master craftspeople. From timber selection to final polishing, every stage reflects our obsession with perfection.
+                    </p>
+                    <p class="craftsmanship-desc">
+                        Our leather comes from Tuscany, metal hardware is hand-patinated, and solid wood is naturally air-dried for at least three years. This material commitment ensures furniture that ages gracefully.
+                    </p>
+                    <div class="craftsmanship-features">
+                        <div class="feature-item">
+                            <p class="feature-number">50+</p>
+                            <p class="feature-label">Years of Heritage</p>
+                        </div>
+                        <div class="feature-item">
+                            <p class="feature-number">32</p>
+                            <p class="feature-label">Production Steps</p>
+                        </div>
+                        <div class="feature-item">
+                            <p class="feature-number">100%</p>
+                            <p class="feature-label">European Made</p>
+                        </div>
+                        <div class="feature-item">
+                            <p class="feature-number">5 yr</p>
+                            <p class="feature-label">Warranty</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="craftsmanship-images reveal">
+                    <div class="craft-image">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80" alt="Craftsmanship">
+                    </div>
+                    <div class="craft-image">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Detail">
+                    </div>
+                    <div class="craft-image">
+                        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=400&q=80" alt="Material">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial">
+        <div class="container">
+            <div class="testimonial-content reveal">
+                <p class="section-tag">Client Stories</p>
+                <blockquote class="testimonial-quote">
+                    MAISON ÉLISE exceeded all my expectations. Each piece is as refined as artwork, perfectly complementing my home with French grace and romance. This isn't just furniture—it's an elevation of lifestyle.
+                </blockquote>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80" alt="Sophie Laurent" class="testimonial-avatar">
+                    <p class="testimonial-name">Sophie Laurent</p>
+                    <p class="testimonial-title">Interior Designer · Paris</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <p class="contact-tag">Visit Us</p>
+                    <h2 class="contact-title">Experience<br>French Elegance</h2>
+                    <p class="contact-desc">
+                        We have showrooms in major cities worldwide. Schedule a private consultation and discover the beauty of French furniture firsthand. Let our design experts guide you to your dream interior.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="contact-label">Showroom</p>
+                                <p class="contact-value">1788 West Nanjing Road, Jing'an District, Shanghai</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="contact-label">Hotline</p>
+                                <p class="contact-value">+86 400-888-6789</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="contact-label">Hours</p>
+                                <p class="contact-value">Daily 10:00 - 21:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form reveal">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label">Your Name</label>
+                            <input type="text" class="form-input" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-input" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Interested In</label>
+                            <input type="text" class="form-input" placeholder="e.g., Sofa, Bed, Desk">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-textarea" placeholder="Tell us about your requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Book Appointment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <p class="footer-logo">MAISON ÉLISE</p>
+                    <p class="footer-logo-cn">Élise Mansion</p>
+                    <p class="footer-desc">
+                        French elegance, timeless craft. Creating refined living spaces for those who appreciate the art of beautiful living.
+                    </p>
+                </div>
+                <div>
+                    <p class="footer-title">Collections</p>
+                    <ul class="footer-links">
+                        <li><a href="#">Living Room</a></li>
+                        <li><a href="#">Bedroom</a></li>
+                        <li><a href="#">Study</a></li>
+                        <li><a href="#">Dining</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="footer-title">About</p>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Craftsmanship</a></li>
+                        <li><a href="#">Showrooms</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="footer-title">Service</p>
+                    <ul class="footer-links">
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">Book Visit</a></li>
+                        <li><a href="#">After-sales</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2024 MAISON ÉLISE. All Rights Reserved.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="WeChat">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8.5 11a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5.5 4.5a1 1 0 11-2 0 1 1 0 012 0zm-3.5-3a8.5 8.5 0 016.5 3.1.75.75 0 01-.7.6 12 12 0 01-5.8 0 .75.75 0 01-.7-.6 8.5 8.5 0 01-6.5-3.1.5.5 0 00-.5.5c0 2.8 2.2 5 5 5 .3 0 .5-.2.5-.5 0-.2-.1-.4-.2-.5-.5-.5-.7-1.2-.7-1.9 0-2.8 2.3-5 5-5s5 2.2 5 5c0 .7-.2 1.4-.7 1.9-.1.1-.2.3-.2.5 0 .3.2.5.5.5 2.8 0 5-2.2 5-5 0-2.8-2.2-5-5-5z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Xiaohongshu">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="currentColor"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your appointment request! We will contact you shortly.');
+            this.reset();
+        });
+
+        const staggerReveal = () => {
+            const cards = document.querySelectorAll('.collection-card, .product-card');
+            cards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+        };
+        staggerReveal();
+    </script>
+</body>
+</html>
